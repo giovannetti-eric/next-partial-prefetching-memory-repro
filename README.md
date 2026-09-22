@@ -68,7 +68,7 @@ and same script, rows run back to back.
 | 16.3.6 | `/timer` | `false` | 678 | 550 | 544 |
 | 16.2.6 | `/timer` | n/a | 1105 | 965 | 960 |
 | 16.4.0-canary.38 | `/timer` | `true` | **4661** | **4634** | **4646** |
-| 16.3.6 | `/timer`, 5 s timer | `true` | 744 | 20 | −72 |
+| 16.3.6 | `/timer`, 5 s timer | `true` | 744 | 20 | -72 |
 | 16.3.6 | `/plain` | `true` | 146 | 8 | 2 |
 | 16.3.6 | `/[slug]` | `true` | 147 | 2 | 1 |
 | 16.3.6 | `/[slug]` | `false` | 143 | 4 | 1 |
@@ -88,11 +88,11 @@ Three things the table says:
   is flat. `/opt-in/<slug>` with the flag off behaves the same way.
 - **A pending timer pins the request, on every build.** 16.2.6 holds about 1 MiB per
   request while the timer is pending, 16.3.6 with the flag off about 0.55 MiB.
-- **The flag makes each pinned request 7× heavier.** 3.8 MiB on 16.3.6, 4.6 MiB on the
+- **The flag makes each pinned request 7 times heavier.** 3.8 MiB on 16.3.6, 4.6 MiB on the
   16.4 canary. With a 5-second timer the memory comes back as the timers fire
   (cycle 2 and 3 are flat), so this is a retention window, not an unbounded leak.
   At production request rates a 10-minute window is fatal all the same:
-  20 requests/s × 600 s × 3.8 MiB is 45 GiB.
+  20 requests/s x 600 s x 3.8 MiB is 45 GiB.
 
 ## Where the memory is
 
@@ -125,7 +125,7 @@ Timeout @668513 [1.2MB]
 `ew` is React's Flight `Request` (`pingedTasks`, `completedRegularChunks`,
 `writtenObjects`, `cacheController`, `onError`). Its `cacheController.signal`'s
 abort reason is an `Error` whose V8 stack frames are still structured, and each frame
-pins the closures that were on the stack when the render was aborted — the amplifier
+pins the closures that were on the stack when the render was aborted, the amplifier
 vercel/next.js#97351 describes. Through those closures sit the `"use cache"` results
 of that request (`Object { paragraphs, slug }`, 4 copies per request across the
 dynamic render, the runtime prerender and the resume data caches) and their
@@ -138,7 +138,7 @@ createPrerenderResumeDataCache()`), a `CacheSignal`, and a `TransformStream` for
 runtime prefetch; the dynamic render fills the resume data cache with every cache
 entry it reads, and `spawnRuntimePrefetchWithFilledCaches` then runs a full
 `prerender-runtime` render of the route from it. Everything reachable from the
-request store — and the timer's `AsyncContextFrame` reaches it — now includes a second
+request store, which the timer's `AsyncContextFrame` reaches, now includes a second
 copy of the route's cache entries as streams, the second render's Flight request, and
 the second render's abort controller with its frame-carrying reason. None of it is
 released when the response and the runtime prefetch settle; it waits for the GC,
@@ -149,7 +149,7 @@ which waits for the timer.
 A Next 16.3.5 application (`cacheComponents`, `output: standalone`, custom
 `cacheHandlers.default`, 940 prerendered routes, on-demand entity pages of ~420 KB).
 It uses TanStack Query with `gcTime: 10 * 60 * 1000`, which on the server schedules
-one 10-minute `setTimeout` per query during SSR — TanStack's own server default is
+one 10-minute `setTimeout` per query during SSR. TanStack's own server default is
 `Infinity`, precisely to avoid that timer. Same probe, 960 distinct entity URLs from
 the production sitemaps, memory read through the Node inspector after a forced GC
 (`scripts/load-list.mjs`):
@@ -162,7 +162,7 @@ the production sitemaps, memory read through the Node inspector after a forced G
 
 Heap snapshot after 900 requests with the flag on: the 600000 ms `TimersList` retains
 1 GB, 4499 `Timeout`s each carry an `AsyncContextFrame`, and 883 parsed postponed
-states (`{ type, data, renderResumeDataCache }`, 635 KB each) are still alive — one
+states (`{ type, data, renderResumeDataCache }`, 635 KB each) are still alive, one
 per request. Each `Timeout` is the `#gcTimeout` of a TanStack `Query`. With the flag
 off, the same timers exist and the same requests are pinned, but the pinned graph
 weighs nothing measurable.
