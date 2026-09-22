@@ -157,8 +157,8 @@ the production sitemaps, memory read through the Node inspector after a forced G
 | build | cycle 1 | cycle 2 | cycle 3 |
 | --- | ---: | ---: | ---: |
 | `partialPrefetching: true` | **1865** | **1868** | **2066** |
-| `partialPrefetching: false` | −100 | 247 | −5 |
-| `partialPrefetching: true`, server `gcTime: Infinity` | 146 | −251 | 667 |
+| `partialPrefetching: false` | -100 | 247 | -5 |
+| `partialPrefetching: true`, server `gcTime: Infinity` | 146 | -251 | 667 |
 
 Heap snapshot after 900 requests with the flag on: the 600000 ms `TimersList` retains
 1 GB, 4499 `Timeout`s each carry an `AsyncContextFrame`, and 883 parsed postponed
