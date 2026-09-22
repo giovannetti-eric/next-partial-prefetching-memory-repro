@@ -1,0 +1,6 @@
+node_modules
+.next
+results/
+*.heapsnapshot
+ISSUE-TO-POST.md
+copy-field.sh

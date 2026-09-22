@@ -1,0 +1,21 @@
+{
+  "name": "next-partial-prefetching-memory-repro",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "start": "NODE_OPTIONS=--expose-gc PORT=3100 next start",
+    "load": "node scripts/load.mjs",
+    "measure": "bash scripts/measure.sh"
+  },
+  "dependencies": {
+    "next": "^16.3.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.6",
+    "typescript": "5.9.3"
+  }
+}
