@@ -1,5 +1,7 @@
 # partial prefetching memory reproduction
 
+Reproduction for [vercel/next.js#99077](https://github.com/vercel/next.js/issues/99077).
+
 With `partialPrefetching: true`, Next.js 16.3 renders a page four times for each document request to an on-demand slug, instead of once.
 When the page's code schedules a timer during the render, each of those four renders stays in memory until its timer fires.
 A 10-minute timer then keeps **about 3.8 MiB per request** alive, against 0.55 MiB with the flag off.
