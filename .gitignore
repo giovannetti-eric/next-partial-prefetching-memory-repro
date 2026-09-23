@@ -1,6 +1,7 @@
 node_modules
 .next
-results/
+results/*.log
 *.heapsnapshot
+*.tsbuildinfo
 ISSUE-TO-POST.md
 copy-field.sh

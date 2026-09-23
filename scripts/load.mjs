@@ -3,7 +3,8 @@
 //
 //   node scripts/load.mjs [cycles] [perCycle] [concurrency] [route] [baseUrl]
 //
-//   route: "" (default) hits /<slug>; "plain", "opt-in" or "timer" hit /<route>/<slug>
+//   route: "" (default) hits /<slug>; "plain", "opt-in", "timer", "opt-in-timer" or
+//   "client-timer" hit /<route>/<slug>
 
 const cycles = Number(process.argv[2] ?? 3);
 const perCycle = Number(process.argv[3] ?? 300);

@@ -1,0 +1,15 @@
+16.3.6	true	timer	600000	{"route":"/timer/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[3808,3763,3820],"finalRssMiB":3931}	{"route":"/timer/","requests":10,"timersPerRequest":4,"byRender":{"prerender":2,"prerender-runtime":1,"request":1}}
+16.3.6	false	timer	600000	{"route":"/timer/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[678,550,544],"finalRssMiB":1058.1}	{"route":"/timer/","requests":10,"timersPerRequest":1,"byRender":{"request":1}}
+16.3.6	false	opt-in-timer	600000	{"route":"/opt-in-timer/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[1489,1496,1491],"finalRssMiB":1882.7}	{"route":"/opt-in-timer/","requests":10,"timersPerRequest":2,"byRender":{"prerender-runtime":1,"request":1}}
+16.3.6	true	client-timer	600000	{"route":"/client-timer/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[4717,4729,4746],"finalRssMiB":4368.8}	{"route":"/client-timer/","requests":10,"timersPerRequest":3,"byRender":{"client-ssr":3}}
+16.3.6	false	client-timer	600000	{"route":"/client-timer/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[1364,1235,1230],"finalRssMiB":1527}	{"route":"/client-timer/","requests":10,"timersPerRequest":1,"byRender":{"client-ssr":1}}
+16.2.6	unset	timer	600000	{"route":"/timer/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[1105,957,957],"finalRssMiB":1389.9}	{"route":"/timer/","requests":10,"timersPerRequest":1,"byRender":{"request":1}}
+16.4.0-canary.39	true	timer	600000	{"route":"/timer/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[4611,4589,4616],"finalRssMiB":3523.9}	{"route":"/timer/","requests":10,"timersPerRequest":4,"byRender":{"prerender":2,"prerender-runtime":1,"request":1}}
+16.4.0-canary.39	false	timer	600000	{"route":"/timer/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[675,551,545],"finalRssMiB":1051.1}	{"route":"/timer/","requests":10,"timersPerRequest":1,"byRender":{"request":1}}
+16.3.6	true	plain	600000	{"route":"/plain/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[134,19,0],"finalRssMiB":659.6}	{}
+16.3.6	false	plain	600000	{"route":"/plain/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[134,4,0],"finalRssMiB":531.3}	{}
+16.3.6	false	opt-in	600000	{"route":"/opt-in/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[150,4,0],"finalRssMiB":620}	{}
+16.3.6	true	root	600000	{"route":"/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[144,2,0],"finalRssMiB":605.8}	{}
+16.3.6	false	root	600000	{"route":"/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[143,4,1],"finalRssMiB":576.8}	{}
+16.2.6	unset	plain	600000	{"route":"/plain/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[133,5,0],"finalRssMiB":455}	{}
+16.3.6	true	timer	5000	{"route":"/timer/","cycles":3,"perCycle":300,"concurrency":8,"perRequestKiB":[618,93,46],"finalRssMiB":1084.3}	{"route":"/timer/","requests":10,"timersPerRequest":4,"byRender":{"prerender":2,"prerender-runtime":1,"request":1}}

@@ -2,7 +2,7 @@ import { connection } from "next/server";
 
 // Reports retained memory: a full GC runs first (the server is started with
 // NODE_OPTIONS=--expose-gc), so the numbers are not an artefact of collector
-// scheduling. `connection()` opts the route out of prerendering — without it,
+// scheduling. `connection()` opts the route out of prerendering: without it,
 // Cache Components would serve a snapshot taken at build time.
 export async function GET() {
   await connection();
